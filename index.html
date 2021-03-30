@@ -1,0 +1,82 @@
+<html lang="en">
+
+<head>
+    <title>Test your speed</title>
+    <!--<link rel="stylesheet" href="/css/style1.css" media="all" />-->
+    <link rel="stylesheet" href="/css/style1.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <header>
+        <h1>TYPING SPEED TEST</h1>
+    </header>
+
+
+
+    <div class="live">
+        <br><br><br>
+        <ul>
+            <li>
+                <div class="timer" id="timer">
+                    <div class="header_text">Time</div>
+                    <div class="curr_time">60s</div>
+                </div>
+                <li>
+                    <div class="errors">
+                        <div class="header_text">Errors</div>
+                        <div class="curr_errors">0</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="accuracy">
+                        <div class="header_text"> Accuracy</div>
+                        <div class="curr_accuracy">100 %</div>
+                    </div>
+                </li>
+        </ul>
+    </div>
+    <div class="container">
+        <br><br><br><br><br>
+        <div class="wpm">
+            <div class="wpm_header_text"></div>
+            <div class="curr_wpm"></div>
+        </div>
+        <div class="cpm">
+            <div class="cpm_header_text"></div>
+            <div class="curr_cpm"></div>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="label">
+            <center>
+                <div class="sample">Type the text displayed here!!</div>
+            </center>
+        </div>
+
+        <center>
+            <textarea class="input_area" id="input_area" placeholder="Click here to Start the Game..." oninput="processCurrentText()" onfocus="startGame()"></textarea>
+            <br><button class="restart_btn" onclick="resetValues()">RESTART</button>
+        </center>
+
+    </div>
+    <footer>
+        <div class="social">
+            <ul>
+                <li>
+                    <a href="https://www.linkedin.com/in/adesh-pawar-b563891b4"> <i class="fa fa-linkedin"></i></a>
+                </li>
+                <li class="vl"></li>
+                <li>
+                    <a href="https://www.instagram.com/adeshpawar15/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="/js/game.js"></script>
+</body>
+
+</html>
