@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 let TIME_LIMIT = 60;
 
-// define quotes to be used
+
 let quotes_array = [
     "I think it pisses God off if you walk by the color purple in a field somewhere and don’t notice it. People think pleasing God is all God cares about.",
     "How you live your life is your business. But remember, our hearts and our bodies are given to us only once. Most of us can’t help but live as though we’ve got two lives to live.",
@@ -43,7 +43,6 @@ let quotes_array = [
     "Nothing in the world can bother you as much as your own mind, I tell you. In fact, others seem to be bothering you, but it is not others, it is your own mind.",
 ];
 
-// selecting required elements
 let timer_text = document.querySelector(".curr_time");
 let accuracy_text = document.querySelector(".curr_accuracy");
 let error_text = document.querySelector(".curr_errors");
@@ -74,8 +73,7 @@ function updateQuote() {
     quoteNo = Math.floor(Math.random() * quotes_array.length);
     current_quote = quotes_array[quoteNo];
 
-    // separate each character and make an element 
-    // out of each of them to individually style them
+    
     current_quote.split('').forEach(char => {
         const charSpan = document.createElement('span')
         charSpan.innerText = char
@@ -87,11 +85,11 @@ function updateQuote() {
 
 function processCurrentText() {
 
-    // get current input text and split it
+    
     curr_input = input_area.value;
     curr_input_array = curr_input.split('');
 
-    // increment total characters typed
+ 
     characterTyped++;
 
     errors = 0;
@@ -100,91 +98,90 @@ function processCurrentText() {
     quoteSpanArray.forEach((char, index) => {
         let typedChar = curr_input_array[index]
 
-        // characters not currently typed
+        // Traverse character
         if (typedChar == null) {
             char.classList.remove('correct');
             char.classList.remove('incorrect');
-            // correct characters
+          
         } else if (typedChar === char.innerText) {
             char.classList.add('correct');
             char.classList.remove('incorrect');
 
-            // incorrect characters
+       
         } else {
             char.classList.add('incorrect');
             char.classList.remove('correct');
 
-            // increment number of errors
+           
             errors++;
         }
     });
 
-    // display the number of errors
+    
     error_text.textContent = total_errors + errors;
 
-    // update accuracy text
+    
     let correctCharacters = (characterTyped - (total_errors + errors));
     let accuracyVal = ((correctCharacters / characterTyped) * 100);
     accuracy_text.textContent = Math.round(accuracyVal) + "%";
 
-    // if current text is completely typed
-    // irrespective of errors
+   
     if (curr_input.length == current_quote.length) {
         updateQuote();
 
-        // update total errors
+        
         total_errors += errors;
 
-        // clear the input area
+      
         input_area.value = "";
     }
 }
 
 function updateTimer() {
     if (timeLeft > 0) {
-        // decrease the current time left
+      
         timeLeft--;
         if (timeLeft <= 10) {
             document.getElementById('timer').style.backgroundColor = "rgb(231, 57, 57)";
             timer_text.textContent.blink();
         }
 
-        // increase the time elapsed
+     
         timeElapsed++;
 
-        // update the timer text
+     
         timer_text.textContent = timeLeft + "s";
     } else {
-        // finish the game
+     
         finishGame();
     }
 }
 
 function finishGame() {
-    // stop the timer
+   
     clearInterval(timer);
 
-    // disable the input area
+    
     input_area.disabled = true;
 
-    // show finishing text
+    
     quote_text.textContent = "Click restart to start a new game.";
 
-    // display restart button
+   
     restart_btn.style.display = "block";
     document.getElementById('timer').style.backgroundColor = "aquamarine";
-    // calculate cpm and wpm
+   
     cpm = Math.round(((characterTyped / timeElapsed) * 60));
     wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60));
 
-    // update cpm and wpm text
+   
     cpm_header.textContent = "CPM";
     wpm_header.textContent = "WPM";
     cpm_text.textContent = cpm;
     wpm_text.textContent = wpm;
 
 
-    /*  display the cpm and wpm*/
+  
     cpm_group.style.display = "block";
     wpm_group.style.display = "block";
 }
@@ -195,7 +192,7 @@ function startGame() {
     resetValues();
     updateQuote();
 
-    // clear old and start a new timer
+ 
     clearInterval(timer);
     timer = setInterval(updateTimer, 1000);
 }
